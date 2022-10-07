@@ -1,4 +1,6 @@
 import logging
+import os
+
 from flask import Flask, render_template, request
 from model import EnFrTranslator
 
@@ -29,7 +31,7 @@ def translate():
 
 def main():
     """Run the Flask app."""
-    app.run(port=8000, debug=False) #host="0.0.0.0",
+    app.run(port=os.environ.get('PORT', 5000), debug=False, host="0.0.0.0")
 
 if __name__ == "__main__":
     main()
