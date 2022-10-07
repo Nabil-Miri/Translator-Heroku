@@ -26,7 +26,7 @@ def translate():
         logging.info("prediction from model= {}".format(prediction))
         return render_template('HTML.html', prediction = prediction)
     else:
-        return render_template('HTML.html', prediction = "Enter a Sentence")
+        return render_template('HTML.html', prediction = "")
 
 
 def main():

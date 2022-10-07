@@ -56,16 +56,12 @@ textarea {
 	<br><br>
 <div class="main">
         <div class="translation-box">
-            <textarea id="input_text" name="text" value="text"
-                      placeholder="Enter the sentence">
-              </textarea>
+            <textarea id="input_text" name="text" value="text" placeholder="Enter the English Sentence"></textarea>
         </div>
- 
+
         <input id="btn-translate" type="submit" value="Translate">
         <div id="translated-box">
-            <textarea id="output-text"
-                placeholder= {{prediction}} >
-              </textarea>
+            <textarea id="output-text" placeholder= "The Translated Sentence" >{{prediction}}</textarea>
         </div>
     </div>
     </form>
