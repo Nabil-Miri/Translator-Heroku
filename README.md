@@ -16,7 +16,16 @@ We first tried to connect to the github repo and it worked but we had some error
 1. The file structure was not right and we fixed it.
 The structure should be:
 ![image](https://user-images.githubusercontent.com/75530842/194516888-235c3f91-201d-4993-b224-15e5a71ee705.png)
+- runtime.txt: Used by Heroku to know which python version we want it to use and the list of supported versions are found on the website.
+![image](https://user-images.githubusercontent.com/75530842/194517148-0c4c57c8-3dca-4662-a871-a7effaa9afed.png)
+- requirments.txt: Used by Heroku to know the needed libraries and their versions (also needed by Heroku)
+![image](https://user-images.githubusercontent.com/75530842/194517474-6d59c34a-1cd6-43a9-8416-080170107910.png)
+- app.py: our main code. it should be in the main root of the file so that heroku could detect that it is a python build (it can detect this also from the requirments,txt)
+- Procfile: a file without extension for heroku to know the main file
+![image](https://user-images.githubusercontent.com/75530842/194517915-834bf512-e745-462a-8c6f-24a5ef7919e5.png)
+Note: if your main py file is not named as app, you could change it in the procfile also.
 
+2. Size 
 
 
 First thing is to downoad Heroku CLI
