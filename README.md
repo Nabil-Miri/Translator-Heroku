@@ -25,7 +25,9 @@ The structure should be:
 ![image](https://user-images.githubusercontent.com/75530842/194517915-834bf512-e745-462a-8c6f-24a5ef7919e5.png)
 Note: if your main py file is not named as app, you could change it in the procfile also.
 
-2. Size 
+2. Size of the Heroku Slug is > 500 MB
+This happened when 'tensorflow' was in the requirments as it is around 450MB and something more. After a lot of testing we found 'tensorflow-cpu' a much smaller version which solved the problem.
+
 
 
 First thing is to downoad Heroku CLI
