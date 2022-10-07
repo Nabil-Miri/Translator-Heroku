@@ -1,13 +1,13 @@
 import logging
 from flask import Flask, render_template, request
-from model import EnFrTranslator
+#from model import EnFrTranslator
 
 app = Flask(__name__)
 # define model path
-model_path = '2BiLSTM.h5'
+#model_path = '2BiLSTM.h5'
 
 # create instance
-model = EnFrTranslator(model_path)
+#model = EnFrTranslator(model_path)
 logging.basicConfig(level=logging.INFO)
 @app.route("/hello")
 def index():
@@ -20,11 +20,12 @@ def translate():
 
     if request.method == 'POST':
         sentence = request.form["text"]
-        prediction = model.translate(sentence)
+        # prediction = model.translate(sentence)
+        prediction = sentence
         logging.info("prediction from model= {}".format(prediction))
-        return render_template('HTML.html', prediction = prediction)
+        return render_template('HTML.html', prediction=prediction)
     else:
-        return render_template('HTML.html', prediction = "Enter a Sentence")
+        return render_template('HTML.html', prediction="Enter a Sentence")
 
 
 def main():
