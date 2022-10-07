@@ -11,7 +11,7 @@ RUN pip install -r requirements.txt
 # Copy the relevant directories
 COPY model ./model
 COPY Tokenizers ./Tokenizers
-COPY Model ./
+COPY model ./
 
 # Run the web server
 ENV PYTHONPATH /translator
