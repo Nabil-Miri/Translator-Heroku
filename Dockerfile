@@ -16,3 +16,4 @@ COPY model ./
 # Run the web server
 ENV PYTHONPATH /translator
 CMD python3 /translator/app.py
+
