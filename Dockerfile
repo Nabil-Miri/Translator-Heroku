@@ -14,6 +14,5 @@ COPY Tokenizers ./Tokenizers
 COPY Model ./
 
 # Run the web server
-EXPOSE 8000
 ENV PYTHONPATH /translator
 CMD python3 /translator/app.py
