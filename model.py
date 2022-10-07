@@ -6,9 +6,6 @@ import tensorflow as tf
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
-from PIL import Image
-from urllib.request import urlretrieve
-
 import logging
 import pickle
 import numpy as np
