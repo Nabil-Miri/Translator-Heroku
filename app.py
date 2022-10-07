@@ -31,7 +31,8 @@ def translate():
 
 def main():
     """Run the Flask app."""
-    app.run(port=os.environ.get('PORT', 5000), debug=False, host="0.0.0.0")
+    port = os.environ.get('PORT', 8000)
+    app.run(port = port, debug=False, host="0.0.0.0")
 
 if __name__ == "__main__":
     main()

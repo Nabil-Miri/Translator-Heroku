@@ -9,8 +9,8 @@ COPY requirements.txt ./requirements.txt
 RUN pip install -r requirements.txt
 
 # Copy the relevant directories
-COPY model ./model
-COPY Tokenizers ./Tokenizers
+COPY model/ ./model
+COPY Tokenizers/ ./Tokenizers
 COPY . ./
 
 # Run the web server
