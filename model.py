@@ -2,7 +2,7 @@ import os
 
 # hide TF warnings
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
-import tensorflow as tf
+
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
@@ -20,9 +20,7 @@ class EnFrTranslator:
 
     def get_tokenizers(self):
         # loading
-        print('BEFORE')
         with open("Tokenizers/tokenizer_eng.pickle", 'rb') as handle:
-            print('AFTER')
             self.tokenizer_eng = pickle.load(handle)
 
         with open('Tokenizers/tokenizer_fr.pickle', 'rb') as handle:
@@ -51,7 +49,7 @@ class EnFrTranslator:
 
 def main():
 
-    model = EnFrTranslator('2BiLSTM.h5')
+    model = EnFrTranslator('model/2BiLSTM.h5')
     predicted_class = model.translate("She is driving the truck")
     logging.info("This is an image of a {}".format(predicted_class))
 
