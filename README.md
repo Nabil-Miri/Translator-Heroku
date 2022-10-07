@@ -34,6 +34,12 @@ When we do any change in the repo we do 'git push heroku main' and after it fini
 ## 5: Deploying model using Heroku (Docker)
 
 we then get prepare the containers with all the required dependencies to move it into cloud using Docker, so users can deal with the app without risks and problems
+First we login to docker 
+docker login
+then we prepare the Dockerfile:
+![image](https://user-images.githubusercontent.com/75530842/194549461-19f449df-841c-43b1-a388-b71119b53a43.png)
+After that we buil an image named translation-heroku
+docker image build -t translation-heroku .
 
 ## Finally : Heroku cloud
 sure we have committed and pushed all the files that we used for deployment into a github repository, so now we can easily access it from Heroku cloud to deploy the created app 
