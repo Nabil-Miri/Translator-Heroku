@@ -1,9 +1,8 @@
 ```sh
-docker build -t eng-fr-translator/api-server -f Dockerfile .
+docker build -t heroku-translator-cmd -f Dockerfile .
 
 ```sh
-docker run -p8000:8000 -it --rm eng-fr-translator/api-server
 docker run -p8000:8000 -it --rm heroku-translator-cmd
 
 ```sh
-curl "https://localhost:8000/v1/translate?sen=she is driving the truck"
+curl "https://localhost:8000/?sen=she is driving the truck"

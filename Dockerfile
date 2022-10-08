@@ -1,4 +1,4 @@
-FROM python:3.8
+FROM python:3.9.14
 
 # Create the working directory
 RUN set -ex && mkdir /translator
@@ -14,7 +14,6 @@ COPY Tokenizers/ ./Tokenizers
 COPY . ./
 
 # Run the web server
-EXPOSE 8000
 ENV PYTHONPATH /translator
 CMD python3 /translator/app.py
 
