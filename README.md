@@ -52,6 +52,8 @@ We build an image either using the docker plugin in pycharm which is connected t
 
 ![image](https://user-images.githubusercontent.com/75530842/194710296-6fd951c2-b84e-4d57-ba0a-bdc98845b7da.png)
 
+![image](https://user-images.githubusercontent.com/75530842/194710406-26a990fa-b3f3-404b-8bce-b0cf68c7daa8.png)
+
 
 
 
