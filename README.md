@@ -1,19 +1,41 @@
 # Eng_Fr_Translator
 English to French Translator model Deployment using Flask, Docker and Heroku
+Our goal is to deploy our translator model on Heroku using Docker.
+Heroku Web App Link: https://our-docker-translator.herokuapp.com/
+![image](https://user-images.githubusercontent.com/75530842/194746157-926dda4c-77d1-4f22-86ea-aabca7696852.png)
 
-We have did the following few steps to reach the final deployment app :
-## 1: Downloading the final model
-we rerun our project again and we have downloaded the final model to get ready to make it as app and deploy it 
+Below steps were done to reach the final deployment app:
+## 1: Downloading the final model and tokenizers
+We downloaded the translator model that we created in Colab. Moreover, we also downloaded the english and french tokenizers using pickle library to use them in our deployment. 
+
+![image](https://user-images.githubusercontent.com/75530842/194746400-96c44223-1b26-4307-aef4-962117378395.png)
+
 ## 2: Creating HTML page
-we have created a HTML page to let the user deal with our model so we have prepared the page
+We have created a simple UI page using HTML to let the user interact with our model.
+
 ## 3: Using Flask as framework
-We created app.py which is contains the flask code and it imports the EnFrTranslator class from model.py file.
-so we connect the HTML page to the Flask framework to let the user interact with the box and the button, so now users can write an english sentence in a textbox and click the tranlate button to let the model predict it and translate the sentence to french
+We created app.py which contains the flask code. This code also imports the EnFrTranslator class from model.py file.
+app.py makes the Flask framework returns the HTML page and based on the user interaction it does specific tasks such as pushing the translate button will change the test in the french text box to the translation. 
+When the user clicks the tanslate button putton, the input text is fed to the model after which they are tokenized. 
+Translation Code:
+
+![image](https://user-images.githubusercontent.com/75530842/194747173-4ee0c033-ddec-4c63-bff8-089b69585574.png)
+
+
 ## 4: Deploying model using Heroku (No Docker)
 There are 2 ways:
-1) connect directly the github repo to heroku using the website
+1) Connect directly the github repo to heroku using the website
+![image](https://user-images.githubusercontent.com/75530842/194746016-3d48d800-8e9c-4172-b4a3-28ff94edc82f.png)
+
+We first tried to connect to the github repo and it worked but we had some errors when deploying which couldn't be visualized this way. Thus, we used Heroku CLI and runned the commands using git bash.
+Note: Later it was discovered that log can be visualized on the website: :)
+
+![image](https://user-images.githubusercontent.com/75530842/194747319-23633e06-f001-4efb-b6df-b337ade7cf93.png)
+![image](https://user-images.githubusercontent.com/75530842/194747343-6474991d-2207-493a-8b20-f2f9d947e3fc.png)
+
 2) Downloading Heroku CLI and using it to deploy the model
-We first tried to connect to the github repo and it worked but we had some errors whe deploying which couldnt be visualized this way. Thus, we used Heroku CLI and runned the commands using git bash. We used 'heroku logs --tail' to know what were the errors and we faced sever ones such as:
+We used 'heroku logs --tail' to know what were the errors. Some of them are:
+
 A. The file structure was not right and we fixed it.
 The structure should be:
 ![image](https://user-images.githubusercontent.com/75530842/194516888-235c3f91-201d-4993-b224-15e5a71ee705.png)
@@ -26,21 +48,39 @@ The structure should be:
 ![image](https://user-images.githubusercontent.com/75530842/194517915-834bf512-e745-462a-8c6f-24a5ef7919e5.png)
 Note: if your main py file is not named as app, you could change it in the procfile also.
 
-B. Size of the Heroku Slug is > 500 MB
-This happened when 'tensorflow' was in the requirments as it is around 450MB and something more. After a lot of testing we found 'tensorflow-cpu' a much smaller version which solved the problem.
+B. Tensorflow was not imported:
+![image](https://user-images.githubusercontent.com/75530842/194747398-fe210b85-5dde-4289-9fd3-03f96e838f11.png)
 
-When we do any change in the repo we do 'git push heroku main' and after it finishs, we type 'heroku open' which will open the link in the browser
+Although we had no tensorflow importing. we got this error as it seems that something in the Keras module needs tensorflow. Thus, we imported it. But we got the following error (B).
+
+C. Size of the Heroku Slug is > 500 MB
+This happened when 'tensorflow' was in the requirments as it is around 450MB and something more. After a lot of testing we found 'tensorflow-cpu' a much smaller and compact version which solved the problem.
+
+Notes: We edited the flask code as follows:
+![image](https://user-images.githubusercontent.com/75530842/194748805-224f377d-5b0a-45df-a9ab-443d343cb328.png)
+
+It was recommended to do so for heroku. 
+
+When we do any change in the repo we run 'git push heroku main' and after it finishs, we type 'heroku open' which will open the link in the browser. 
+Code Steps:
+
+heroku login
+heroku create app_name
+git push heroku main # main: name of the branch
+heroku open
+
+Finally, it worked and we were able to deploy the model on heroku without Docker
 
 ## 5: Deploying model using Heroku (Docker)
 
 # Creating Docker Container
-we then get prepare the containers with all the required dependencies to move it into cloud using Docker, so users can deal with the app without risks and problems
-First we login to docker 
+First, the Docker file is prepared and built with all the required dependencies.
+Steps:
 docker login
 then we prepare the Dockerfile:
 
 ![image](https://user-images.githubusercontent.com/75530842/194549461-19f449df-841c-43b1-a388-b71119b53a43.png)
-
+Note: We removed the 'EXPOSE 8000' from code. In the tutorials it was not written so we removed it just that it wont create any unneccessary error? 
 We build an image either using the docker plugin in pycharm which is connected to Docker Desktop or by using the docker command in the git bash. The command for building a docker image is:  docker build -t heroku-translator-cmd -f Dockerfile .
 
 ![image](https://user-images.githubusercontent.com/75530842/194709746-a7615080-ee00-488b-af26-9c7b6fd7694a.png)
@@ -58,3 +98,16 @@ We build an image either using the docker plugin in pycharm which is connected t
 
 ## Finally : Heroku cloud
 sure we have committed and pushed all the files that we used for deployment into a github repository, so now we can easily access it from Heroku cloud to deploy the created app 
+Steps:
+heroku container:login
+heroku create app_name
+heroku container:push web
+heroku container:release web
+heroku open
+
+![image](https://user-images.githubusercontent.com/75530842/194748729-cb6fb412-2ca3-4035-b3c6-b7d3b680bef1.png)
+
+![image](https://user-images.githubusercontent.com/75530842/194748748-25b69eb4-b25b-4773-b613-4c29ee6c2d8c.png)
+
+![image](https://user-images.githubusercontent.com/75530842/194748757-ad1f1459-37ff-4595-b0e3-6904a80558a5.png)
+
