@@ -21,7 +21,7 @@ def translate():
     logging.info("Predict request received!")
 
     if request.method == 'POST':
-        sentence = request.form["text"]
+        sentence = request.form["text"]A
         prediction = model.translate(sentence)
         logging.info("prediction from model= {}".format(prediction))
         return render_template('HTML.html', prediction = prediction)
