@@ -140,3 +140,8 @@ heroku open
 ![image](https://user-images.githubusercontent.com/75530842/194748757-ad1f1459-37ff-4595-b0e3-6904a80558a5.png)
 
 [The Heroku App Link](https://our-docker-translator.herokuapp.com/)
+
+Done By:
+Lara El Ousman
+Nabil Miri
+Abdulrahim El Mohamad
