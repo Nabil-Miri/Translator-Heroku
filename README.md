@@ -5,6 +5,8 @@ Our goal is to deploy our translator model on Heroku using Docker.
 [Our Heroku Web App](https://our-docker-translator.herokuapp.com/) Link: 
 https://our-docker-translator.herokuapp.com/
 
+### [UPDATE: Heroku in 2022 stopped being Free so this app unfortunately will not load]
+
 ![image](https://user-images.githubusercontent.com/75530842/194746157-926dda4c-77d1-4f22-86ea-aabca7696852.png)
 
 Below steps were done to reach the final deployment app:
